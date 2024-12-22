@@ -6,41 +6,46 @@ use std::io::BufReader;
 
 // create zeor short classification candidates
 fn create_db() -> sqlite::Connection {
-    db.execute("CREATE TABLE zeroshortcandidates (id INTEGER PRIMARY KEY, Label TEXT)")
-        .unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (lable) VALUES ('rock')")..unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (lable) VALUES ('pop')")..unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (lable) VALUES ('hip hop')")..unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (lable) VALUES ('country')")..unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (lable) VALUES ('latin')")..unwrap();
+    let db = sqlite::Connection::open_in_memory().unwrap();
+    db.execute("CREATE TABLE zeroshortcandidates (id INTEGER PRIMARY KEY, label TEXT)").unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('rock')").unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('pop')").unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('hip hop')").unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('country')").unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('latin')").unwrap();
+    db
 }
 
+
 pub fn get_all_zeroshotcandidates() -> Vec<String> {
-    let dn = create_db();
-    let query = "SELECT label FROM zeroshotcandidates";
-    let mut candiates: Vec<String> = Vec::new();
+    let db = create_db();
+    let query = "SELECT label FROM zeroshortcandidates";
+    let mut candidates: Vec<String> = Vec::new();
     db.iterate(query, |pairs| {
         for &(_column, value) in pairs.iter() {
-            let value = value.unwrap();
-            candidates.push(value.to_sting());
+            if let Some(value) = value {
+                candidates.push(value.to_string());
+            }
         }
         true
     })
     .unwrap();
-    cabdidates
+    candidates
 }
 
+
 // read lyrics form a file and return a vector of stings
-pub fn read_lyrics(file: &str) -> Vce<String> {
+pub fn read_lyrics(file: &str) -> Vec<String> {
     let mut lyrics: Vec<String> = Vec::new();
-    let file = FIle::open(file) / expect("Unable to open file");
-    let reader = BufReder::new(file);
+    let file = File::open(file).expect("Unable to open file");
+    let reader = BufReader::new(file);
     for line in reader.lines() {
         let line = line.unwrap();
         lyrics.push(line);
     }
     lyrics
 }
+
 
 /* use hugging face to classify lyrics using zero short classification
 Accepts a vector of strings as lyrics and grabs candidates from the in memory sqlite database
