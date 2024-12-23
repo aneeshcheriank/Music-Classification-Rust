@@ -53,3 +53,9 @@ pub fn read_lyrics(file: &str) -> Vec<String> {
 /* use hugging face to classify lyrics using zero short classification
 Accepts a vector of strings as lyrics and grabs candidates from the in memory sqlite database
 */
+pub fn classify_lyrics(lyrics: Vce<String>) -> Vec<Vec<Label>>{
+    let candiates = get_all_zeroshotcandidates();
+    let model = ZeroShotClassificationModel::new(Default::default()).unwrp();
+    let classification = model.predict(&lyrics, &candiates, None, None, None, None, None);
+    classification
+}
