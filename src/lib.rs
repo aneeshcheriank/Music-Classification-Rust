@@ -7,15 +7,20 @@ use std::io::BufReader;
 // create zeor short classification candidates
 fn create_db() -> sqlite::Connection {
     let db = sqlite::Connection::open_in_memory().unwrap();
-    db.execute("CREATE TABLE zeroshortcandidates (id INTEGER PRIMARY KEY, label TEXT)").unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('rock')").unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('pop')").unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('hip hop')").unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('country')").unwrap();
-    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('latin')").unwrap();
+    db.execute("CREATE TABLE zeroshortcandidates (id INTEGER PRIMARY KEY, label TEXT)")
+        .unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('rock')")
+        .unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('pop')")
+        .unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('hip hop')")
+        .unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('country')")
+        .unwrap();
+    db.execute("INSERT INTO zeroshortcandidates (label) VALUES ('latin')")
+        .unwrap();
     db
 }
-
 
 pub fn get_all_zeroshotcandidates() -> Vec<String> {
     let db = create_db();
@@ -33,7 +38,6 @@ pub fn get_all_zeroshotcandidates() -> Vec<String> {
     candidates
 }
 
-
 // read lyrics form a file and return a vector of stings
 pub fn read_lyrics(file: &str) -> Vec<String> {
     let mut lyrics: Vec<String> = Vec::new();
@@ -45,7 +49,6 @@ pub fn read_lyrics(file: &str) -> Vec<String> {
     }
     lyrics
 }
-
 
 /* use hugging face to classify lyrics using zero short classification
 Accepts a vector of strings as lyrics and grabs candidates from the in memory sqlite database
