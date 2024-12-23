@@ -24,7 +24,7 @@ Classify lyrics using HF model in Rust
 ## HuggingFace Chatbot Arena
 <b>Lab Description</b> In this hands-on lab, you'll use the ChatGPT Arena platform to compare two language models through natural conversation. Ask questions and provide subjective votes to benchmark model strengths.
 
-Steps
+### Steps
 
 - Go to https://chat.lmsys.org/?arena and scroll down to the chat window.
 
@@ -36,7 +36,7 @@ Steps
 
 - Repeat steps 2-4 to continue benchmarking models across rounds.
 
-Reflection Questions
+### Reflection Questions
 
 - Which models tended to perform better on what types of questions or scenarios?
 
@@ -48,7 +48,7 @@ Reflection Questions
 
 - What additional or alternative ways could you envision leveraging ChatGPT Arena?
 
-Challenge Exercises
+### Challenge Exercises
 
 - Pose an open-ended subjective question and dig deeper into model differences over multiple turns.
 
