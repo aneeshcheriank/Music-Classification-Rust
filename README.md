@@ -87,3 +87,28 @@ Classify lyrics using HF model in Rust
 
 - For what types of ML workloads might Rust struggle compared to options you use today?
 
+# Build Cloud Solutions with Rust
+
+## Key Terms
+
+- <b>Actix</b> - Rust web framework for building high-performance web services like microservices. Supports async and scalability.
+
+- <b>App Engine</b> - GCP's fully managed serverless application platform. Supports Rust as a custom runtime option.
+
+- <b>Cloud Run</b> - GCP product to run stateless containers in a fully managed environment. Integrates with Rust workflows.
+
+- <b>Cargo Lambda</b> - Rust crate to help package, test, deploy and manage AWS Lambdas written in Rust.
+
+- <b>Step Functions</b> - AWS service enabling serverless visual workflows by composing Lambda functions. Accessible via Rust SDK.
+
+- <b>Tokio</b> - Asynchronous runtime for Rust providing non-blocking I/O scaling to tens of thousands tasks by leveraging threads.
+
+- <b></b> - Amazon Elastic Container Service to launch Docker containers using AWS CLI or SDKs (including Rust).
+
+- <b>ECR</b> - Amazon Elastic Container Registry providing managed and scalable Docker container storage integrated with Rust CI/CD.
+
+- <b>Copilot</b> - CLI tool to streamline building, releasing and operating containerized apps on AWS services like ECS/ECR using Docker.
+
+## Testing the microservices
+- LOCUST: python lib
+- load test an application
